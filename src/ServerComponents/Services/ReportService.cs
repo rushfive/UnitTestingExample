@@ -29,23 +29,43 @@ namespace ServerComponents.Services
 			}
 
 			ReportMetadataSql reportSql = await this.DbContext.FindSingleAsync<ReportMetadataSql>(reportId);
+			if (reportSql == null)
+			{
+				throw new Exception($"Report '{reportId}' was not found.");
+			}
+
 
 			// if report is older than 3 years, dont return it
 			if (reportSql.Created.AddYears(3) < DateTime.UtcNow)
 			{
-				throw new Exception($"Report {reportId} is too old and will not be retrieved.");
+				throw new Exception($"Report '{reportId}' is too old and will not be retrieved.");
 			}
 
 			UserSql ownerSql = await this.DbContext.FindSingleAsync<UserSql>(reportSql.OwnerId);
+			if (ownerSql == null)
+			{
+				throw new Exception($"User '{reportSql.OwnerId}' not found.");
+			}
+
 
 			// if owner of report is disabled, dont return it
 			if (!ownerSql.Enabled)
 			{
-				throw new Exception($"Report {reportId} is owned by a disabled user and will not be retrieved.");
+				throw new Exception($"Report '{reportId}' is owned by a disabled user and will not be retrieved.");
 			}
 
 			User owner = UserSql.ToEntity(ownerSql);
 			string authorFullName = UserUtil.GetFullName(owner.FirstName, owner.LastName);
+
+			// modify title based on whether it's been updated
+			if (reportSql.LastUpdated.HasValue)
+			{
+				reportSql.Title += " (Revision)";
+			}
+			else
+			{
+				reportSql.Title += " (Original)";
+			}
 
 			return new ReportMetadata
 			{

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using CoreAbstractions.Entities;
 using ServerAbstractions;
 using ServerAbstractions.Services;
+using ServerAbstractions.SqlEntities;
 
 namespace ServerComponents.Services
 {
@@ -22,14 +23,14 @@ namespace ServerComponents.Services
 				throw new ArgumentException("Must specify a user id.", nameof(userId));
 			}
 
-			User user = await this.DbContext.FindSingleAsync<User>(userId);
+			UserSql userSql = await this.DbContext.FindSingleAsync<UserSql>(userId);
 
-			if (user == null)
+			if (userSql == null)
 			{
-				throw new Exception($"User {userId} was not found.");
+				throw new Exception($"User '{userId}' was not found.");
 			}
 
-			return user;
+			return UserSql.ToEntity(userSql);
 		}
 	}
 }

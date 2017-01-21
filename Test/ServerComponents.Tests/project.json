@@ -3,10 +3,11 @@
 
 	"testRunner": "xunit",
 
-	"dependencies": {
-		"ServerAbstractions": "1.0.0-*",
-		"TestsCore": "1.0.0-*"
-	},
+    "dependencies": {
+        "ServerAbstractions": "1.0.0-*",
+        "ServerComponents": "1.0.0-*",
+        "TestsCore": "1.0.0-*"
+    },
 
 	"frameworks": {
 		"netcoreapp1.1": {
