@@ -6,30 +6,30 @@ using ServerAbstractions.Services;
 
 namespace ServerComponents.Services
 {
-    public class UserService : IUserService
-    {
+	public class UserService : IUserService
+	{
 		private IDatabaseContext DbContext { get; }
 
-	    public UserService(IDatabaseContext dbContext)
-	    {
-		    this.DbContext = dbContext;
-	    }
+		public UserService(IDatabaseContext dbContext)
+		{
+			this.DbContext = dbContext;
+		}
 
-	    public async Task<User> GetAsync(Guid userId)
-	    {
-		    if (userId == Guid.Empty)
-		    {
-			    throw new ArgumentException("Must specify a user id.", nameof(userId));
-		    }
+		public async Task<User> GetAsync(Guid userId)
+		{
+			if (userId == Guid.Empty)
+			{
+				throw new ArgumentException("Must specify a user id.", nameof(userId));
+			}
 
-		    User user = await this.DbContext.FindSingleAsync<User>(userId);
+			User user = await this.DbContext.FindSingleAsync<User>(userId);
 
-		    if (user == null)
-		    {
-			    throw new Exception($"User {userId} was not found.");
-		    }
+			if (user == null)
+			{
+				throw new Exception($"User {userId} was not found.");
+			}
 
-		    return user;
-	    }
-    }
+			return user;
+		}
+	}
 }

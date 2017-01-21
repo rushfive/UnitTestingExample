@@ -2,8 +2,8 @@
 
 namespace ServerAbstractions.SqlEntities
 {
-    public class ReportMetadataSql
-    {
+	public class ReportMetadataSql
+	{
 		public Guid Id { get; set; }
 		public string Title { get; set; }
 		public DateTime Created { get; set; }

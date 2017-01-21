@@ -3,8 +3,8 @@ using CoreAbstractions.Entities;
 
 namespace ServerAbstractions.SqlEntities
 {
-    public class UserSql
-    {
+	public class UserSql
+	{
 		public Guid Id { get; set; }
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
@@ -23,4 +23,4 @@ namespace ServerAbstractions.SqlEntities
 	}
 }
 
-	
+
