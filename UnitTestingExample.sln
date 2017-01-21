@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ServerComponents.Tests", "src\ServerComponents.Tests\ServerComponents.Tests.xproj", "{56C92670-2547-4B82-97FA-C9677646836C}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ServerComponents.Tests", "Test\ServerComponents.Tests\ServerComponents.Tests.xproj", "{56C92670-2547-4B82-97FA-C9677646836C}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ServerComponents", "src\ServerComponents\ServerComponents.xproj", "{B23AAF4C-5C7A-41AC-9CBC-736F8291B93F}"
 EndProject
@@ -20,9 +20,9 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreAbstractions", "src\Cor
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{DD33F128-2475-4258-9D6F-67AC09E19B3C}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreAbstractions.Tests", "CoreAbstractions.Tests\CoreAbstractions.Tests.xproj", "{6C4D981B-777E-4821-A72C-0AAC8AE6D525}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CoreAbstractions.Tests", "Test\CoreAbstractions.Tests\CoreAbstractions.Tests.xproj", "{6C4D981B-777E-4821-A72C-0AAC8AE6D525}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "TestsCore", "TestsCore\TestsCore.xproj", "{1354E5F2-3B06-472D-967E-8A392AEC7F80}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "TestsCore", "Test\TestsCore\TestsCore.xproj", "{1354E5F2-3B06-472D-967E-8A392AEC7F80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
