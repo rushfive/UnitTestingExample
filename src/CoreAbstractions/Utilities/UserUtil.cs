@@ -5,18 +5,18 @@ namespace CoreAbstractions.Utilities
 {
 	public static class UserUtil
 	{
-		public static string GetFullName(User user)
+		public static string GetFullName(string firstName, string lastName)
 		{
-			if (string.IsNullOrWhiteSpace(user.FirstName))
+			if (string.IsNullOrWhiteSpace(firstName))
 			{
-				throw new Exception("First name must be provided.");
+				throw new ArgumentException("First name must be provided.");
 			}
-			if (string.IsNullOrWhiteSpace(user.LastName))
+			if (string.IsNullOrWhiteSpace(lastName))
 			{
-				throw new Exception("Last name must be provided.");
+				throw new ArgumentException("Last name must be provided.");
 			}
 
-			return $"{user.FirstName} {user.LastName}".Trim();
+			return $"{firstName.Trim()} {lastName.Trim()}".Trim();
 		}
 	}
 }

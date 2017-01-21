@@ -45,7 +45,7 @@ namespace ServerComponents.Services
 			}
 
 			User owner = UserSql.ToEntity(ownerSql);
-			string authorFullName = UserUtil.GetFullName(owner);
+			string authorFullName = UserUtil.GetFullName(owner.FirstName, owner.LastName);
 
 			return new ReportMetadata
 			{
