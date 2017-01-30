@@ -32,15 +32,10 @@ namespace ServerComponents.Tests.Services
 		    
 	    }
 
-	    public async Task GetAsync_DisabledOwner_ThrowsException()
-	    {
-		    
-	    }
+        public async Task GetAsync_OwnerNotFound_ThrowsException()
+        {
 
-	    public async Task GetAsync_OwnerNotFound_ThrowsException()
-	    {
-		    
-	    }
+        }
 
 	    public async Task GetAsync_OwnerDisabled_ThrowsException()
 	    {
