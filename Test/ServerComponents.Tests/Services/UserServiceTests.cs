@@ -23,6 +23,7 @@ namespace ServerComponents.Tests.Services
 	    public async Task GetAsync_InvalidArgument_ThrowsArgumentException()
 		{
 			TestingObject<UserService> testingObject = this.GetTestingObject();
+
 			UserService userService = testingObject.GetResolvedTestingObject();
 
 			await Assert.ThrowsAsync<ArgumentException>(async () =>
@@ -33,16 +34,16 @@ namespace ServerComponents.Tests.Services
 	    public async Task GetAsync_UserNotFound_ThrowsException()
 	    {
 			TestingObject<UserService> testingObject = this.GetTestingObject();
-			UserService userService = testingObject.GetResolvedTestingObject();
-			var mockDbContext = testingObject.GetDependency<Mock<IDatabaseContext>>();
 
 			Guid userIdArg = Guid.NewGuid();
 
-		    mockDbContext
+            var mockDbContext = testingObject.GetDependency<Mock<IDatabaseContext>>();
+            mockDbContext
 			    .Setup(dbc => dbc.FindSingleAsync<UserSql>(It.Is<Guid>(id => id == userIdArg)))
 			    .ReturnsAsync(null);
 
-		    await Assert.ThrowsAsync<Exception>(async ()
+            UserService userService = testingObject.GetResolvedTestingObject();
+            await Assert.ThrowsAsync<Exception>(async ()
 			    => await userService.GetAsync(userIdArg));
 	    }
 
@@ -50,12 +51,12 @@ namespace ServerComponents.Tests.Services
 		public async Task GetAsync_Success_ReturnsCorrectResult()
 		{
 			TestingObject<UserService> testingObject = this.GetTestingObject();
-			UserService userService = testingObject.GetResolvedTestingObject();
-			var mockDbContext = testingObject.GetDependency<Mock<IDatabaseContext>>();
-
+			
 			Guid userIdArg = Guid.NewGuid();
 
-			var userSql = new UserSql
+            var mockDbContext = testingObject.GetDependency<Mock<IDatabaseContext>>();
+
+            var userSql = new UserSql
 			{
 				FirstName = "Mary",
 				LastName = "Jane"
@@ -64,10 +65,11 @@ namespace ServerComponents.Tests.Services
 				.Setup(dbc => dbc.FindSingleAsync<UserSql>(It.Is<Guid>(id => id == userIdArg)))
 				.ReturnsAsync(userSql);
 
-			User result = await userService.GetAsync(userIdArg);
-
-			Assert.Equal("Mary", result.FirstName);
-			Assert.Equal("Jane", result.LastName);
+            UserService userService = testingObject.GetResolvedTestingObject();
+            User result = await userService.GetAsync(userIdArg);
+ 
+            Assert.Equal(userSql.FirstName, result.FirstName);
+			Assert.Equal(userSql.LastName, result.LastName);
 		}
 	}
 }
